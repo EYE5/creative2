@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <header>
+      <router-link to="/">KVavito</router-link>
+
+      <router-link class="favorite" to="/favorite">Favorite</router-link>
+    </header>
     <router-view />
   </div>
 </template>
@@ -13,20 +14,27 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+header {
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  background: greenyellow;
 }
 
-#nav a {
-  font-weight: bold;
+.favorite {
+  margin: 0 20px 0 auto;
+  text-decoration: none;
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+h1 {
+  font-size: 24px;
 }
 </style>

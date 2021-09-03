@@ -15,7 +15,7 @@ export const data = {
         area: 134,
         unit: "квм",
       },
-      image: "@/assets/1.jpg",
+      image: "./images/1.jpg",
       relationships: {
         type: "agent",
         id: 2,
@@ -30,7 +30,7 @@ export const data = {
       type: "flat",
       id: 2,
       attributes: {
-        title: "1 комнатная на Барабаинской",
+        title: "Квартира на Барабаинской",
         rooms: 2,
         address: {
           city: "Tyumen",
@@ -41,7 +41,7 @@ export const data = {
         area: 34,
         unit: "квм",
       },
-      image: "@/assets/2.jpg",
+      image: "./images/8.jpg",
       relationships: {
         type: "agent",
         id: 10,
@@ -67,7 +67,7 @@ export const data = {
         area: 134,
         unit: "квм",
       },
-      image: "@/assets/3.jpg",
+      image: "./images/3.jpg",
       relationships: {
         type: "agent",
         id: 44,
@@ -93,7 +93,7 @@ export const data = {
         area: 150,
         unit: "квм",
       },
-      image: "@/assets/4.jpg",
+      image: "./images/4.jpg",
       relationships: {
         type: "agent",
         id: 46,
@@ -108,7 +108,7 @@ export const data = {
       type: "flat",
       id: 5,
       attributes: {
-        title: "Квартира Водников",
+        title: "1 комнатная на Водников",
         rooms: 1,
         address: {
           city: "Tyumen",
@@ -119,7 +119,7 @@ export const data = {
         area: 33,
         unit: "квм",
       },
-      image: "@/assets/5.jpg",
+      image: "./images/5.jpg",
       relationships: {
         type: "agent",
         id: 44,
@@ -145,7 +145,7 @@ export const data = {
         area: 150,
         unit: "квм",
       },
-      image: "@/assets/6.jpg",
+      image: "./images/6.jpg",
       relationships: {
         type: "agent",
         id: 44,

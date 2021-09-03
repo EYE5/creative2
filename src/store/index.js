@@ -8,6 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     apartments: [],
+    favorite: [],
     loading: false,
   },
   mutations: {
@@ -16,6 +17,15 @@ export default new Vuex.Store({
     },
     setLoading(state, payload) {
       state.loading = payload;
+    },
+    toggleFavorite(state, payload) {
+      const idx = state.favorite.findIndex((fav) => fav.id === payload.id);
+
+      if (idx > -1) {
+        state.favorite.splice(idx, 1);
+      } else {
+        state.favorite.push(payload);
+      }
     },
   },
   actions: {
@@ -34,5 +44,4 @@ export default new Vuex.Store({
       commit("setLoading", false);
     },
   },
-  modules: {},
 });
