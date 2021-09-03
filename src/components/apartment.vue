@@ -1,5 +1,6 @@
 <template>
   <c-box
+    class="apartment"
     maxW="sm"
     border-width="1px"
     rounded="lg"
@@ -12,8 +13,9 @@
       :alt="apartment.attributes.title"
       size="280px"
       objectFit="cover"
+      @click.stop="open"
     />
-    <c-box p="6">
+    <c-box p="6" @click.stop="open">
       <c-box d="flex" align-items="baseline">
         <c-box
           color="gray.500"
@@ -28,7 +30,13 @@
     </c-box>
     <c-box p="6">
       <c-flex direction="row" justify-content="center">
-        <c-box mt="1" as="h4" line-height="tight" is-truncated>
+        <c-box
+          mt="1"
+          as="h4"
+          line-height="tight"
+          is-truncated
+          @click.stop="open"
+        >
           {{ apartment.attributes.title }}
         </c-box>
         <c-box
@@ -41,7 +49,7 @@
         >
           <c-icon
             name="star"
-            :color="favorite ? 'rgb(41, 141, 218)' : 'vlack'"
+            :color="favorite ? 'rgb(41, 141, 218)' : 'black'"
           />
         </c-box>
       </c-flex>
@@ -69,8 +77,15 @@ export default {
     toggle() {
       this.$emit("toggle", this.apartment);
     },
+    open() {
+      this.$emit("open", this.apartment);
+    },
   },
 };
 </script>
 
-<style></style>
+<style>
+.apartment {
+  cursor: pointer;
+}
+</style>

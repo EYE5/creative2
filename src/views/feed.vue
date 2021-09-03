@@ -6,17 +6,26 @@
       :favorite="isInFavorite(apartment)"
       :key="apartment.id"
       @toggle="toggleFavorite"
+      @open="open"
     />
+    <ApartmentCard v-if="details" :apartment="details" @close="close" />
   </div>
 </template>
 
 <script>
 import Apartment from "@/components/apartment.vue";
+import ApartmentCard from "@/components/apartment-card.vue";
 
 export default {
   name: "Feed",
   components: {
     Apartment,
+    ApartmentCard,
+  },
+  data() {
+    return {
+      details: undefined,
+    };
   },
   mounted() {
     this.$store.dispatch("getApartments");
@@ -35,6 +44,12 @@ export default {
     },
     isInFavorite(apartment) {
       return this.$store.state.favorite.includes(apartment);
+    },
+    open(apartment) {
+      this.details = apartment;
+    },
+    close() {
+      this.details = undefined;
     },
   },
 };

@@ -3,7 +3,7 @@
     <header>
       <router-link class="logo" to="/">KVavito</router-link>
 
-      <router-link class="favorite" to="/favorite">Favorite</router-link>
+      <router-link class="favorite" to="/favorite">Избранное</router-link>
     </header>
     <router-view />
   </div>
