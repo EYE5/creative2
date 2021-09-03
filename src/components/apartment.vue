@@ -39,7 +39,10 @@
           is-truncated
           @click="toggle"
         >
-          <c-icon name="star" :color="favorite ? 'green' : 'blue'" />
+          <c-icon
+            name="star"
+            :color="favorite ? 'rgb(41, 141, 218)' : 'vlack'"
+          />
         </c-box>
       </c-flex>
     </c-box>
