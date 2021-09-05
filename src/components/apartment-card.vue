@@ -1,35 +1,66 @@
 <template>
   <c-box
-    v-click-outside="close"
-    class="apartment-card"
-    maxW="xl"
+    class="apartment"
+    maxW="sm"
     border-width="1px"
     rounded="lg"
+    ml="2"
+    mt="2"
     overflow="hidden"
   >
-    <c-flex direction="row" justify-content="start">
+    <div @click.stop="open">
       <c-image
         :src="apartment.image"
         :alt="apartment.attributes.title"
-        size="360px"
+        size="280px"
         objectFit="cover"
       />
-      <c-flex direction="column">
-        <c-box as="h4" mt="2" line-height="tight" is-truncated>
-          {{ apartment.attributes.title }}
-        </c-box>
-        <c-box font-weight="semibold" letter-spacing="wide" font-size="xs">
+    </div>
+
+    <c-box p="6" @click.stop="open">
+      <c-box d="flex" align-items="baseline">
+        <c-box
+          color="gray.500"
+          font-weight="semibold"
+          letter-spacing="wide"
+          font-size="xs"
+        >
           {{ apartment.attributes.rooms }} ком &bull;
           {{ apartment.attributes.area }} {{ apartment.attributes.unit }}
         </c-box>
+      </c-box>
+    </c-box>
+    <c-box p="6">
+      <c-flex direction="row" justify-content="center">
+        <c-box
+          mt="1"
+          as="h4"
+          line-height="tight"
+          is-truncated
+          @click.stop="open"
+        >
+          {{ apartment.attributes.title }}
+        </c-box>
+        <c-box
+          mt="0"
+          ml="auto"
+          as="button"
+          line-height="tight"
+          is-truncated
+          @click="toggle"
+        >
+          <c-icon
+            name="star"
+            :color="favorite ? 'rgb(41, 141, 218)' : 'black'"
+          />
+        </c-box>
       </c-flex>
-    </c-flex>
+    </c-box>
   </c-box>
 </template>
 
 <script>
-import { CBox, CImage, CFlex } from "@chakra-ui/vue";
-import ClickOutside from "vue-click-outside";
+import { CBox, CImage, CFlex, CIcon } from "@chakra-ui/vue";
 
 export default {
   name: "ApartmentCard",
@@ -38,33 +69,25 @@ export default {
       type: Object,
       required: true,
     },
+    favorite: {
+      type: Boolean,
+      required: true,
+    },
   },
-  directives: {
-    ClickOutside,
-  },
-  components: { CBox, CImage, CFlex },
-  mounted() {
-    document.documentElement.style.overflow = "hidden";
-  },
-  beforeDestroy() {
-    document.documentElement.style.overflow = "auto";
-  },
+  components: { CBox, CImage, CFlex, CIcon },
   methods: {
-    close() {
-      this.$emit("close");
+    toggle() {
+      this.$emit("toggle", this.apartment);
+    },
+    open() {
+      this.$emit("open", this.apartment);
     },
   },
 };
 </script>
 
-<style scoped>
-.apartment-card {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  width: 900px !important;
-  height: 360px;
+<style>
+.apartment {
+  cursor: pointer;
 }
 </style>

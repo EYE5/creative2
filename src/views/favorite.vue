@@ -1,39 +1,18 @@
 <template>
-  <div class="favorite">
-    <Apartment
-      v-for="apartment of favorite"
-      :apartment="apartment"
-      :favorite="true"
-      :key="apartment.id"
-      @toggle="toggleFavorite"
-    />
-  </div>
+  <ApartmentList :apartments="favorite" />
 </template>
 <script>
-import Apartment from "@/components/apartment.vue";
+import ApartmentList from "@/components/apartment-list.vue";
 
 export default {
-  name: "favorite",
+  name: "Favorite",
   components: {
-    Apartment,
+    ApartmentList,
   },
   computed: {
     favorite() {
       return this.$store.state.favorite;
     },
   },
-  methods: {
-    toggleFavorite(apartment) {
-      this.$store.commit("toggleFavorite", apartment);
-    },
-  },
 };
 </script>
-
-<style scoped>
-.favorite {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-</style>

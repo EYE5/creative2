@@ -1,64 +1,31 @@
 <template>
-  <div class="feed">
-    <Apartment
-      v-for="apartment of apartments"
-      :apartment="apartment"
-      :favorite="isInFavorite(apartment)"
-      :key="apartment.id"
-      @toggle="toggleFavorite"
-      @open="open"
-    />
-    <ApartmentCard v-if="details" :apartment="details" @close="close" />
+  <div>
+    <Loader v-if="loading" color="rgb(41, 141, 218)" />
+    <ApartmentList v-else :apartments="apartments" />
   </div>
 </template>
 
 <script>
-import Apartment from "@/components/apartment.vue";
-import ApartmentCard from "@/components/apartment-card.vue";
+import ApartmentList from "@/components/apartment-list.vue";
+import Loader from "@/components/loader.vue";
 
 export default {
   name: "Feed",
   components: {
-    Apartment,
-    ApartmentCard,
+    ApartmentList,
+    Loader,
   },
-  data() {
-    return {
-      details: undefined,
-    };
-  },
-  mounted() {
+
+  beforeMount() {
     this.$store.dispatch("getApartments");
   },
   computed: {
+    loading() {
+      return this.$store.state.loading;
+    },
     apartments() {
       return this.$store.state.apartments;
-    },
-    favorite() {
-      return this.$store.state.favorite;
-    },
-  },
-  methods: {
-    toggleFavorite(apartment) {
-      this.$store.commit("toggleFavorite", apartment);
-    },
-    isInFavorite(apartment) {
-      return this.$store.state.favorite.includes(apartment);
-    },
-    open(apartment) {
-      this.details = apartment;
-    },
-    close() {
-      this.details = undefined;
     },
   },
 };
 </script>
-
-<style scoped>
-.feed {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-</style>

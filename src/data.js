@@ -41,7 +41,7 @@ export const data = {
         area: 34,
         unit: "квм",
       },
-      image: "./images/8.jpg",
+      image: "./images/2.jpg",
       relationships: {
         type: "agent",
         id: 10,
